@@ -1,0 +1,21 @@
+# Config used by the bundled examples. Run from the repo root, e.g.
+#   s2v build examples/3d_demo.md -o build/demo -c examples/config.yaml --engine edge
+width: 1920
+height: 1080
+fps: 30
+pad: 0.6
+subtitles: true
+
+# path is relative to this config file; the demo assets ship with the repo
+assets_dir: assets
+cache_dir: ~/.cache/s2v
+
+tts:
+  engine: edge
+  voice: en-US-GuyNeural
+
+visuals:
+  blender: blender
+  godot: godot
+  godot_display: auto
+  godot_renderer: vulkan

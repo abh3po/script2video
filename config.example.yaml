@@ -1,0 +1,50 @@
+# s2v run configuration. Copy to config.yaml and edit.
+width: 1920
+height: 1080
+fps: 30
+pad: 0.6                 # silence appended after each narration line (s)
+crossfade: 0.0           # seconds of overlap between scenes
+subtitles: true
+subtitle_burn: false     # true = hard-code captions into the video
+# music: assets/audio/music.mp3
+music_volume: 0.15
+
+# Shared asset library, reused across every video (models, textures, audio, svg).
+# Bare names in a script resolve here: <!-- visual: blender | atom -->
+assets_dir: assets
+# Content-addressed cache of expensive renders (TTS audio, Blender/Godot clips).
+# The same 3D render is produced once and reused everywhere. null to disable.
+cache_dir: ~/.cache/s2v
+cache: true
+
+tts:
+  engine: qwen                       # qwen | edge | piper | espeak
+  model: Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice
+  speaker: Ryan                      # Ryan, Aiden, Vivian, Serena, Uncle_Fu, ...
+  language: English
+  # instruct: speak slowly and thoughtfully, with a sense of wonder
+  device: cuda:0
+  attn: flash_attention_2
+  # Voice cloning (Base model): point these at a shared reference clip.
+  # ref_audio: assets/audio/ref_voice.wav
+  # ref_text: "..."
+
+visuals:
+  default_kind: slide
+  background: "#0b0f14"
+  foreground: "#f2f6fb"
+  accent: "#4cc9f0"
+  font: /usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+  title_size: 80
+  subtitle_size: 46
+  margin: 96
+  # absolute paths or names on PATH
+  blender: blender
+  godot: godot
+  blender_samples: 64
+  # Godot needs an X display for real pixels (headless = dummy renderer).
+  # auto: use $DISPLAY if set, else xvfb-run. Other values: xvfb, none.
+  godot_display: auto
+  # vulkan works with the GPU through Xvfb and gives exact-size frames;
+  # use opengl3 only if Vulkan is unavailable.
+  godot_renderer: vulkan

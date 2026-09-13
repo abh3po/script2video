@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1spin0000001"]
+
+[ext_resource type="Script" path="res://spin.gd" id="1_spin"]
+[ext_resource type="Environment" uid="uid://cenvironment1" path="res://env.tres" id="2_env"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1"]
+size = Vector3(1.6, 1.6, 1.6)
+
+[sub_resource type="StandardMaterial3D" id="Mat_box"]
+albedo_color = Color(0.16, 0.7, 0.95, 1)
+metallic = 0.6
+roughness = 0.25
+
+[sub_resource type="PlaneMesh" id="Plane_1"]
+size = Vector2(40, 40)
+
+[sub_resource type="StandardMaterial3D" id="Mat_plane"]
+albedo_color = Color(0.03, 0.04, 0.06, 1)
+roughness = 0.9
+
+[node name="Main" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.86, 0.5, 0, -0.5, 0.86, 0, 3.2, 5.2)
+fov = 50.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_env")
+
+[node name="DirLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.86, -0.35, 0.36, 0, 0.7, 0.7, -0.5, -0.6, 0.6, 0, 6, 4)
+light_energy = 1.4
+
+[node name="Spin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+mesh = SubResource("BoxMesh_1")
+surface_material_override/0 = SubResource("Mat_box")
+script = ExtResource("1_spin")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
+mesh = SubResource("Plane_1")
+surface_material_override/0 = SubResource("Mat_plane")

@@ -1,0 +1,33 @@
+# Local asset library (your models, textures, music) is not part of the source.
+# Keep the folder documented via README, ignore everything else.
+/assets/*
+!/assets/README.md
+
+# Builds and caches
+/build/
+*.tmp
+.s2v-cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Godot editor cache
+.godot/
+*.import
+
+# Blender backups
+*.blend1
+*.blend2
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
